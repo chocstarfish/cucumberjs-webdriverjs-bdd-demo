@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cucumber": "latest",
-    "webdriverjs": "^1.6.1"
+    "cucumber": "^0.4.0",
+    "webdriverjs": "^1.6.1",
+    "chai": "^1.9.1"
   }
 }
