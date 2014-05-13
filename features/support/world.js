@@ -12,8 +12,9 @@ var client = webdriverjs.remote({
     },
     // webdriverjs has a lot of output which is generally useless
     // However, if anything goes wrong, remove this to see more details
-    logLevel: 'verbose'
+    logLevel: 'silent'
 });
+
 client.addCommand('hasText', function (selector, text, callback) {
     this.getText(selector, function (error, result) {
         expect(result).to.have.string(text);
@@ -52,4 +53,10 @@ var World = function World(callback) {
     callback(); // tell Cucumber we're finished and to use 'this' as the world instance
 };
 
-exports.World = World;
+module.exports = function () {
+    this.registerHandler('AfterFeatures', function (e, done) {
+        client.end(done);
+    });
+};
+
+module.exports.World = World;
